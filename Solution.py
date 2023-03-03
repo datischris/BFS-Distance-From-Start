@@ -1,4 +1,5 @@
 from collections import deque
+import time
 
 class Solution:
 
@@ -9,7 +10,7 @@ class Solution:
     def output_distances(self):
         queue = deque([self.start_node])                     # init queue
         visited = set([self.start_node])                     # init visited set
-        distarray = [-1] * (list(self.graph.keys())[-1]+1)   # init distance array with -1 for nodes not visited
+        distarray = [-1] * len(self.graph)                   # init distance array with -1 for nodes not visited
 
         distarray[self.start_node] = 0                       # updated start node distance with 0
 
@@ -21,5 +22,4 @@ class Solution:
                     queue.append(node)                       # append to queue
                     visited.add(node)                        # add to visited set
                     distarray[node] = (distarray[pnode] + 1) # update distance with parent nodes distance + 1
-
         return distarray
